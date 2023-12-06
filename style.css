@@ -46,10 +46,15 @@ body {
   width: 100vw;
   height: 15vh;
   background-color: #ffffff;
+  margin-bottom: 1vh;
 }
 .Signup-head {
   color: #343a40;
   padding: 5vh 10vw;
+}
+.Signup-head>a{
+  text-decoration: none;
+  color: #7749f8;
 }
 #form-div {
   width: 30vw;
@@ -182,6 +187,17 @@ body {
 {
   margin: 0 2vh 0vh 5vh;
 }
+.crud-btn-a{
+  text-decoration: none;
+  background: none;
+  border: none;
+  color: #7749f8;
+  font-size: large;
+  font-weight: 500;
+  /* margin-top: 5vh; */
+  margin-left: 3vw;
+  cursor: pointer;
+}
 .crud-btn {
   background: none;
   border: none;
@@ -196,3 +212,72 @@ body {
   text-shadow: 0px 0px 3px  #ccc;
   text-decoration: underline;
 }
+/* dashboard end  */
+/* profile section start  */
+.user-profile-img > img {
+  width: 150px;
+  height: 150px;
+  border-radius: 15px;
+  margin: 5vh 2vh 0vh 5vh;
+}
+.profile-user{
+  color: var(--black);
+  padding: 3vh 5vh 0vh 5vh;
+  font-size: 1.5rem;
+}
+.pass-head{
+  color: var(--black);
+  padding: 1vh 5vh;
+  font-size: 1.3rem;
+}
+#form-div-profile {
+  width: 30vw;
+  height: 80%;
+  background-color: #ffffff;
+  margin: 5vh 15vw;
+}
+#form-profile {
+  padding-top:2vh;
+  /* padding: 7vh; */
+  padding-left: 5vh;
+}
+#form-profile > input {
+  margin-bottom: 2vh;
+}
+.input-signup {
+  padding: 1vh;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.input-signup:focus {
+  border: 1px solid #7749f8;
+  outline: none;
+  box-shadow: 0px 0px 10px #af93fd;
+}
+.input-signup::placeholder {
+  color: #adb5bd;
+}
+.submit-profile {
+  padding: 5px 5px;
+  border: none;
+  border-radius: 5px;
+  margin-left: 1vw;
+  background-color: #7749f8;
+  color: #ffffff;
+  cursor: pointer;
+}.submit-profile:hover {
+  /* background-color: #926df7; */
+  box-shadow: 0px 0px 10px #7749f8;
+}
+.user-id-img > img {
+  width: 250px;
+  height: 250px;
+  border-radius: 15px;
+  margin: 5vh 10vw;
+}
+.myblogs2 {
+  margin-top: 3vh;
+  margin-left: 10vw;
+  color: var(--black);
+}
+
