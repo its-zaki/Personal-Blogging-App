@@ -5,7 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SignUp</title>
-    <link rel="stylesheet" href="style.css">
+   <link rel="stylesheet" href="style.css">
+    <!-- sweet alert  -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
 </head>
 <body class="body">
     <div id="header">
@@ -17,13 +20,14 @@
     </div>
     <div id="form-div">
         <form id="form">
-            <input class="input-signup" type="text" placeholder="Enter First Name">
-            <input class="input-signup" type="text" placeholder="Enter Last Name">
-            <input class="input-signup" type="email" placeholder="Enter Email">
-            <input class="input-signup" type="password" placeholder="Enter Password">
-            <input class="input-signup" type="password" placeholder="Repeat Password">
+            <input class="input-signup" id="fname" type="text" placeholder="Enter First Name">
+            <input class="input-signup" id="lname" type="text" placeholder="Enter Last Name">
+            <input class="input-signup" id="email" type="email" placeholder="Enter Email">
+            <input class="input-signup" id="password" type="password" placeholder="Enter Password">
+            <input class="input-signup" id="rpassword" type="password" placeholder="Repeat Password">
             <button class="submit" type="submit">Signup</button>
         </form>
     </div>
+    <script type="module" src="script/app.js"></script>
 </body>
 </html>
