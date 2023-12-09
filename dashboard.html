@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="style.css">
+    <!-- sweet alert  -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="body">
@@ -24,16 +26,17 @@
     </div>
     <div id="form-div3">
         <form id="form3">
-            <input class="title" type="text" placeholder="Enter your title">
-            <textarea class="title" cols="30" rows="5" placeholder="Whats in your mind?" maxlength="800"></textarea>
-            <button class="publish-blog" type="submit">Publish Blog</button>
+            <input class="title" id="TITLE" type="text" placeholder="Enter your title">
+            <textarea class="title" id="DESC" cols="30" rows="5" placeholder="Whats in your mind?" maxlength="800"></textarea>
+            <input class="publish-blog" type="submit" value="Publish Blog">
         </form>
     </div>
     <!-- blogs section  -->
     <div>
         <h2 class="myblogs">My Blogs</h2>
     </div>
-    <div id="main">
+    <div id="box"></div>
+    <!-- <div id="main">
         <div class="container">
             <div class="user-img">
                 <img src="./assets/img/profile.jpg" alt="user-img">
@@ -58,8 +61,8 @@
             <button class="crud-btn">Delete </button> <button class="crud-btn">Edit</button>
         </div>
 
-    </div>
-    <div id="main">
+    </div> -->
+    <!-- <div id="main">
         <div class="container">
             <div class="user-img">
                 <img src="./assets/img/profile.jpg" alt="user-img">
@@ -83,7 +86,7 @@
         <div class="crud">
             <button class="crud-btn">Delete </button> <button class="crud-btn">Edit</button>
         </div>
-    </div>
+    </div> -->
     <script type="module" src="script/dashboard.js"></script>
 </body>
 
