@@ -114,7 +114,7 @@ function render ()
       btn.addEventListener("click", async () => {
         console.log("edit at index " + index);
   
-        const question = prompt("Want to change title/caption");
+        const question = prompt("Want to change title/description");
   
         if (question === "title") {
           const newTitle = prompt("Enter new Title");
@@ -133,8 +133,8 @@ function render ()
           } catch (error) {
             console.error(error);
           }
-        } else if (question === "caption") {
-          const Updatedcap = prompt("Enter new Caption");
+        } else if (question === "description") {
+          const Updatedcap = prompt("Enter new Desc");
           if (newCaption == null || newCaption == "") {
             return;
           }
