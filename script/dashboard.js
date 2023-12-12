@@ -11,6 +11,8 @@ import {
   orderBy,
   where,
   Timestamp,
+  doc,
+  updateDoc,deleteDoc 
 } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
 
 const form = document.querySelector("#form3");
@@ -85,10 +87,79 @@ function render ()
     <p class="content">${item.desc}</p>
   </div>
   <div class="crud">
-    <button class="crud-btn">Delete </button> <button class="crud-btn">Edit</button>
+    <button class="crud-btn" id="delete">Delete </button> <button class="crud-btn" id="update">Edit</button>
   </div> </div>`;
     // console.log(`${doc.id} => ${doc.data()}`);
   });
+
+  const delete_btn = document.querySelectorAll('#delete');
+  const update_btn = document.querySelectorAll('#update');
+  
+
+
+    delete_btn.forEach((btn, index) => {
+        btn.addEventListener('click', async () => {
+            console.log("Delete Called", arr[index]);
+            await deleteDoc(doc(db, "posts", arr[index].docid))
+            getdatafromfirestore()
+                .then(() => {
+                    console.log('post deleted');
+                    arr.splice(index, 1);
+                    render()
+                });
+
+        })
+    })
+    update_btn.forEach((btn, index) => {
+      btn.addEventListener("click", async () => {
+        console.log("edit at index " + index);
+  
+        const question = prompt("Want to change title/caption");
+  
+        if (question === "title") {
+          const newTitle = prompt("Enter new Title");
+          if (newTitle == null || newTitle == "") {
+            return;
+          }
+  
+          try {
+            const cityRef = doc(db, "posts", arr[index].docid);
+  
+            await updateDoc(cityRef, {
+              title: newTitle,
+            });
+  
+            render();
+          } catch (error) {
+            console.error(error);
+          }
+        } else if (question === "caption") {
+          const Updatedcap = prompt("Enter new Caption");
+          if (newCaption == null || newCaption == "") {
+            return;
+          }
+  
+          try {
+            const cityRef = doc(db, "posts", arr[index].docid);
+  
+            await updateDoc(cityRef, {
+              caption: Updatedcap,
+            });
+  
+            render();
+          } catch (error) {
+            console.error( error);
+          }
+        }
+      });
+    });
+
+
+
+
+
+
+
 }
 // function render (){
 
@@ -101,7 +172,7 @@ async function getdatafromfirestore(uid) {
   const q = await query(collection(db, "posts"), orderBy("postDate", "desc"),where ("uid","==" , uid ));
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
-    arr.push(doc.data());
+    arr.push({...doc.data() , docid: doc.id});
     console.log(doc.data());
   });
   render()
@@ -115,6 +186,8 @@ form.addEventListener("submit", async (event) => {
       title: title.value,
       desc: desc.value,
       uid: auth.currentUser.uid,
+      img_link: img,
+      names: idname,
       postDate: Timestamp.fromDate(new Date()),
     }
     try {
@@ -123,7 +196,7 @@ form.addEventListener("submit", async (event) => {
        Obj
        );
        console.log("Document written with ID: ", docRef.id);
-       arr = [{...Obj, arr}]
+       arr = [{...Obj, arr, }]
        console.log(arr);
        render()
       } catch (e) {
