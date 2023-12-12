@@ -28,6 +28,12 @@ body {
 .logo {
   color: #ffffff;
 }
+.logo-dp{
+  width: 40px ;
+  height: 40px ;
+  margin-left: 30px;
+  border-radius: 50%;
+}
 .head-btn {
   background-color: #7749f8;
   border: none;
@@ -87,6 +93,21 @@ body {
 .input-signup::placeholder {
   color: #adb5bd;
 }
+#profile_img::file-selector-button{
+  padding: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  color: #7749f8;   
+}#profile_img::file-selector-button:hover{
+  background-color: rgb(226, 223, 223);
+}
+#profile_img{
+  color: #7749f8;
+  font-size: 0.8rem;
+}
+
 .submit {
   padding: 5px 10px;
   border: none;
@@ -101,6 +122,7 @@ body {
 
 .logout {
   display: flex;
+  align-items: center;
 }
 #logout {
   margin-left: 10px;
@@ -161,11 +183,12 @@ body {
 }
 #main {
   width: 60vw;
-  height: 60vh;
+  height: 100%;
   background-color: #ffffff;
   margin: 2vw 15vh;
   box-shadow: 0 3px 3px #ccc;
   border-radius: 5px;
+  padding-bottom: 5px;
 }
 .container {
   display: flex;
@@ -191,7 +214,7 @@ body {
 }
 .crud
 {
-  margin: 0 2vh 0vh 5vh;
+  margin: 0 2vh 5vh 5vh;
 }
 .crud-btn-a{
   text-decoration: none;
@@ -285,5 +308,9 @@ body {
   margin-top: 3vh;
   margin-left: 10vw;
   color: var(--black);
+}
+#dividor{
+  display:flex ;
+  justify-content: space-around;
 }
 
