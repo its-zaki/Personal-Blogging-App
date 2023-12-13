@@ -77,18 +77,16 @@ const  date = new Date()
   seeAll.forEach((item, index) => {
     item.addEventListener("click", () => {
       console.log(index);
-      let detailsArr = [];
+      let define_arr = [];
       const obj = {
         uid: array[index].uid,
-        name: array[index].displayName,
-        email: array[index].email,
-        photoURL: array[index].photoURL,
+        name: array[index].names,
+        img: array[index].img_link,
       };
-      console.log(array[index].photoURL);
-      detailsArr.push(obj);
+      define_arr.push(obj);
 
-      const seeAlluid = JSON.stringify(detailsArr);
-      localStorage.setItem("userDetails", seeAlluid);
+      const useruid = JSON.stringify(define_arr);
+      localStorage.setItem("user", useruid);
       window.location = "userid.html";
     });
   });

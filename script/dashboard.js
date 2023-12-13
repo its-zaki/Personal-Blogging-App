@@ -23,10 +23,12 @@ const username = document.querySelector("#username");
 const logo = document.querySelector("#logo-img");
 const logout = document.querySelector("#logout");
 
+
 let uid;
 let img;
 let idname;
 console.log(auth);
+
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
     window.location = "home.html";
@@ -45,7 +47,7 @@ onAuthStateChanged(auth, async (user) => {
       idname = doc.data().names
       // const data = doc.data()
     });
-    getdatafromfirestore(uid)
+  render(uid)
   
 });
 logout.addEventListener("click", () => {
@@ -64,15 +66,28 @@ logout.addEventListener("click", () => {
 });
 
 let arr = [];
-function render ()
+async function render (uid)
 {
+  main.innerHTML ="" 
+  arr.length = 0;
+  const q = query(
+    collection(db, "posts"),
+    where("uid", "==", uid),
+    orderBy("postDate", "desc")
+
+  );
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    arr.push({...doc.data() , docid: doc.id});
+    // console.log(arr);
+  });
   const  date = new Date()
- const formatted =  date.toLocaleDateString()
+  const formatted =  date.toLocaleDateString()
   console.log(formatted);
   // const mydate = date.toLocalString()
   // console.log(mydate);
+  // console.log(arr);
   arr.map((item) => {
-    console.log(arr);
     main.innerHTML += ` <div id="main"><div class="container">
     <div class="user-img">
         <img src="${img}" alt="user-img">
@@ -89,34 +104,41 @@ function render ()
   <div class="crud">
     <button class="crud-btn" id="delete">Delete </button> <button class="crud-btn" id="update">Edit</button>
   </div> </div>`;
-    // console.log(`${doc.id} => ${doc.data()}`);
+  // console.log(`${doc.id} => ${doc.data()}`);
   });
 
+  
   const delete_btn = document.querySelectorAll('#delete');
   const update_btn = document.querySelectorAll('#update');
-  
 
 
     delete_btn.forEach((btn, index) => {
         btn.addEventListener('click', async () => {
             console.log("Delete Called", arr[index]);
             await deleteDoc(doc(db, "posts", arr[index].docid))
-            getdatafromfirestore()
+            // getdatafromfirestore()
                 .then(() => {
                     console.log('post deleted');
                     arr.splice(index, 1);
-                    render()
+                    render(uid)
                 });
 
         })
     })
     update_btn.forEach((btn, index) => {
       btn.addEventListener("click", async () => {
-        console.log("edit at index " + index);
   
-        const question = prompt("Want to change title/description");
-  
-        if (question === "title") {
+        const question = prompt("Want to change title/desc");
+        if(question === "" ){
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: `First Type "title" or "desc" to change title or description `,
+          });
+
+          return
+        }
+        else if (question === "title") {
           const newTitle = prompt("Enter new Title");
           if (newTitle == null || newTitle == "") {
             return;
@@ -129,13 +151,13 @@ function render ()
               title: newTitle,
             });
   
-            render();
+            render(uid);
           } catch (error) {
             console.error(error);
           }
-        } else if (question === "description") {
+        } else if (question === "desc") {
           const Updatedcap = prompt("Enter new Desc");
-          if (newCaption == null || newCaption == "") {
+          if (Updatedcap == null || Updatedcap == "") {
             return;
           }
   
@@ -143,10 +165,10 @@ function render ()
             const cityRef = doc(db, "posts", arr[index].docid);
   
             await updateDoc(cityRef, {
-              caption: Updatedcap,
+              desc: Updatedcap,
             });
   
-            render();
+            render(uid);
           } catch (error) {
             console.error( error);
           }
@@ -161,26 +183,33 @@ function render ()
 
 
 }
+// arr.length = 0;
+//   // console.log( auth.currentUser.uid);
+//   const q = await query(collection(db, "posts"), orderBy("postDate", "desc") ,where("uid" ,"==", uid));
+//   const querySnapshot = await getDocs(q);
+//   querySnapshot.forEach((doc) => {
+//     arr.push({...doc.data() , docid: doc.id});
+//     console.log(arr);
+//   });
 // function render (){
 
 // }
 
 
-async function getdatafromfirestore(uid) {
-  arr.length = 0;
-  // console.log( auth.currentUser.uid);
-  const q = await query(collection(db, "posts"), orderBy("postDate", "desc"),where ("uid","==" , uid ));
-  const querySnapshot = await getDocs(q);
-  querySnapshot.forEach((doc) => {
-    arr.push({...doc.data() , docid: doc.id});
-    console.log(doc.data());
-  });
-  render()
-}
+// async function getdatafromfirestore(uid) {
+//   arr.length = 0;
+//   // console.log( auth.currentUser.uid);
+//   const q = await query(collection(db, "posts"), orderBy("postDate", "desc"), where("uid", "==", uid));
+//   const querySnapshot = await getDocs(q);
+//   querySnapshot.forEach((doc) => {
+//     arr.push({...doc.data() , docid: doc.id});
+//     console.log(arr);
+//   });
+//   render()
+// }
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
-  if (title.value && desc.value !== "") {
     // main.innerHTML = "";
     const Obj={
       title: title.value,
@@ -188,7 +217,7 @@ form.addEventListener("submit", async (event) => {
       uid: auth.currentUser.uid,
       img_link: img,
       names: idname,
-      postDate: Timestamp.fromDate(new Date()),
+      postDate: new Date().toLocaleDateString(),
     }
     try {
       // arr.push();
@@ -196,21 +225,15 @@ form.addEventListener("submit", async (event) => {
        Obj
        );
        console.log("Document written with ID: ", docRef.id);
-       arr = [{...Obj, arr, }]
+       arr = [Obj]
        console.log(arr);
-       render()
+       render(uid)
       } catch (e) {
         console.error("Error adding document: ", e);
       }
       title.value = "";
       desc.value = "";
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "please enter any title or description",
-      });
-    }
+    
     // getdatafromfirestore();
 
 });

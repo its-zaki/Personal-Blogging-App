@@ -34,6 +34,11 @@ body {
   margin-left: 30px;
   border-radius: 50%;
 }
+.logo-dp:hover{
+  transition: 0.5s;
+  width: 45px ;
+  height: 45px ;
+}
 .head-btn {
   background-color: #7749f8;
   border: none;
@@ -308,6 +313,9 @@ body {
   margin-top: 3vh;
   margin-left: 10vw;
   color: var(--black);
+}#seeallname
+{
+  color: #7749f8;
 }
 #dividor{
   display:flex ;
