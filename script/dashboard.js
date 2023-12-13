@@ -31,7 +31,7 @@ console.log(auth);
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
-    window.location = "home.html";
+    window.location = "index.html";
     return
   }
     uid = user.uid;
