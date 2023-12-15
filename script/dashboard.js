@@ -53,7 +53,7 @@ onAuthStateChanged(auth, async (user) => {
 logout.addEventListener("click", () => {
   signOut(auth)
     .then(() => {
-      window.location = "home.html";
+      window.location = "index.html";
     })
     .catch((error) => {
       console.log(error);
