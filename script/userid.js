@@ -5,7 +5,7 @@ import {
   getDocs,
   where,
   query,
-  orderBy
+  orderBy,
 } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
 
 const main = document.querySelector("#box");
@@ -60,4 +60,4 @@ async function render() {
   `;
   });
 }
-render()
+render();
