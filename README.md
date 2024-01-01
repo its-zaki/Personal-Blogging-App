@@ -1,1 +1,1 @@
-Personal Blogging App Made by me: hosted URL=> https://its-zaki.github.io/Personal-Blogging-App/
+Personal Blogging App Made by me: hosted URL=> https://personal-blogging-app-3ebe0.web.app/
