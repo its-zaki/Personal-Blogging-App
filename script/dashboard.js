@@ -21,7 +21,7 @@ const title = document.querySelector("#TITLE");
 const desc = document.querySelector("#DESC");
 const main = document.querySelector("#box");
 const username = document.querySelector("#username");
-const logo = document.querySelector("#logo-img");
+const logo = document.querySelector(".logo-dp");
 const logout = document.querySelector("#logout");
 
 let uid;
