@@ -48,9 +48,8 @@ postsQuerySnapshot.forEach((doc) => {
     array.push({ ...doc.data(), docId: doc.id });
 });
 
-const  date = new Date()
- const formatted =  date.toLocaleDateString()
-  console.log(formatted);
+const  date = new Date().toLocaleDateString()
+  console.log(date);
   // const mydate = date.toLocalString()
   // console.log(mydate);
   array.map((item) => {
@@ -62,7 +61,7 @@ const  date = new Date()
     <div class="heads">
         <h3>${item.title}</h3>
         <span>${item.names}</span> -
-        <span>${formatted}</span>
+        <span>${item.postDate}</span>
     </div>
   </div>
   <div>
