@@ -143,6 +143,15 @@ body {
   #form-div2{
     width: 80%;
     margin: 15vw 8vw;
+    border-radius: 20px;
+  }
+  #form-div{
+    width: 80%;
+    margin: 15vw 8vw;
+    border-radius: 20px;
+  }
+  .submit{
+    margin-left:13vw;
   }
   
 }
