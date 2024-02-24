@@ -27,6 +27,13 @@ body {
 }
 .logo {
   color: #ffffff;
+  
+  
+}
+.logo>a{
+  text-decoration: none;
+  color: #ffffff;
+
 }
 .logo-dp {
   width: 40px;
